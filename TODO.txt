@@ -1,0 +1,4 @@
+TODO:
+- User verify to ninjakiwi
+- User rank retrieve
+- Give role depending on rank
