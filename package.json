@@ -2,7 +2,7 @@
   "name": "btd-bot",
   "version": "1.0.0",
   "description": "BTD Battle 2 Bot for discord",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,6 +13,7 @@
   "author": "pasho",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^14.19.3"
+    "discord.js": "^14.19.3",
+    "dotenv": "^16.5.0"
   }
 }
