@@ -1,5 +1,6 @@
 const { Client, IntentsBitField } = require('discord.js');
 require('dotenv').config()
+const FetchUserData = require('../functions/fetchUserData')
 
 const client = new Client({
     intents: [
@@ -15,13 +16,29 @@ client.on('ready', (e) => {
 })
 
 // Client slash commands
-client.on('interactionCreate', (interaction) => {
+client.on('interactionCreate', async (interaction) => {
+    let userData;
     if (!interaction.isChatInputCommand()) return;
 
-    if(interaction.commandName === 'verify'){
-        const oak_id = interaction.options.get('oak-id')?.value
+    const oak_id = interaction.options.get('oak-id')?.value
 
-        interaction.reply(`OAK ID: ${oak_id}`)
+    if(interaction.commandName === 'verify'){
+        try{
+            userData = await FetchUserData(oak_id)
+            console.log(userData)
+        }catch(error){
+            console.log(error)
+        }
+
+        // Destructure
+        const {
+            displayName, 
+            is_club_member,
+            currentSeason
+        } = userData;
+
+        // interaction.reply(body)
+        interaction.reply(`OAK ID: ${oak_id} \nName: ${displayName} \nClub Member: ${is_club_member} \nCurrent Season ${currentSeason}`)
     }
 })
 
